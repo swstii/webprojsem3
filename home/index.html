@@ -1,76 +1,157 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Guide your future</title>
-    <link rel="icon" href="C:\Users\shour\OneDrive\Desktop\Web D project\book logo.png">
-    <link rel = 'stylesheet' href= 'homestyle.css'>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-    <script src='home.js'></script>
-    </head>
-    <body>
-    <!--navbar-->
+  <head>
+      <title>Guide your future</title>
+      <link rel="icon" href="C:\Users\shour\OneDrive\Desktop\Web D project\book logo.png">
+      <link rel = 'stylesheet' href= 'homestyle.css'>
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+      <script src='home.js'></script>
+  </head>
+
+
+  <body>
+
     <div class="navbar">
-  <a href="#home">Home</a>
-  <div class="dropdown">
-    <button class="dropbtn">MBA
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">CAT</a>
-      <a href="#">GRE/GMAT</a>
-      <a href="#">IIMs</a>
-      <a href="#">ISBs</a>
-    </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">Engineering
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="./nsut/nsut.html">NSUT</a>
-      <a href="./DTU/dtu.html">DTU</a>
-      <a href="./IIITD/iiitd.html">IIIT-D</a>
-      <a href="./IGDTUW/igdtuw.html">IGDTUW</a>
-      <a href="#">IITs</a>
-      <a href="#">NITs</a>
-      <a href="#">Others..</a>
-    </div>
-  </div>
-          <!-- search bar right align -->
-        <div class="search">
-            <form action="#">
-                <input type="text"
-                    placeholder=" Search Colleges ...."
-                    name="search">
-<!--<button>
-                   <img src="C:\Users\shour\OneDrive\Desktop\Web D project\search.png">
-                </button> ---->
-            </form>
+      <a href="#home">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">MBA
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">CAT</a>
+          <a href="#">GRE/GMAT</a>
+          <a href="#">IIMs</a>
+          <a href="#">ISBs</a>
         </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Engineering
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="./nsut/nsut.html">NSUT</a>
+          <a href="./DTU/dtu.html">DTU</a>
+          <a href="./IIITD/iiitd.html">IIIT-D</a>
+          <a href="./IGDTUW/igdtuw.html">IGDTUW</a>
+          <a href="#">IITs</a>
+          <a href="#">NITs</a>
+          <a href="#">Others..</a>
+        </div>
+      </div>
+
+      <div id="sign_in">
+
+        <button id = "googleLogin">Sign-In</button>
+        <button id = "googleLogout">Logout</button>
+
+      </div>
+
+      <div class="search">
+        <form action="#">
+          <input type="text"
+              placeholder=" Search Colleges ...."
+              name="search">
+        </form>
+      </div>
     </div>
-</div>
-<!--bg image 1-->
-<div class="container">
-<img src = 'C:\Users\shour\OneDrive\Desktop\Web D project\bgimage1.jpeg'>
-  <div class="content">
-    <h1>ShikshaMitra</h1>
-    <p>ShikshaMitra is one of its kind platform to guide millions of students thgrough the cumbersome prrocess of college councelling. We provide a unique call service that is provided by no other such site. So sit back and let us do our work</p>
-  </div>
 
-</div>
-<!--popup form-->
-<div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
-    <h1>Login</h1>
+  <!--bg image 1-->
+    <!-- <div class="container">
+    <img src = 'C:\Users\shour\OneDrive\Desktop\Web D project\bgimage1.jpeg'>
+      <div class="content">
+        <h1>ShikshaMitra</h1>
+        <p>ShikshaMitra is one of its kind platform to guide millions of students thgrough the cumbersome prrocess of college councelling. We provide a unique call service that is provided by no other such site. So sit back and let us do our work</p>
+      </div>
+    </div> -->
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+    <script type="module">
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+      localStorage.clear();
 
-    <button type="submit" class="btn">Login</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-  </form>
-</div>
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-analytics.js";
+      import { getAuth , onAuthStateChanged , signInWithPopup , GoogleAuthProvider , signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
 
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyCX720G6XCyfRsy4-dWJ3lfGsZvkho1kBI",
+        authDomain: "sem3-web.firebaseapp.com",
+        projectId: "sem3-web",
+        storageBucket: "sem3-web.appspot.com",
+        messagingSenderId: "914233387222",
+        appId: "1:914233387222:web:1499b6450a704215740177",
+        measurementId: "G-NW1HSNEE1E"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      const provider = new GoogleAuthProvider();
+
+      var loginButton = document.getElementById('googleLogin');
+      var logoutButton = document.getElementById('googleLogout');
+
+      loginButton.addEventListener('click',googleloginFn)
+      logoutButton.addEventListener('click',googlelogoutFn)
+
+      //fns
+
+      function googleloginFn(){
+
+        signInWithPopup(auth,provider).then((result) => {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          // The signed-in user info.
+          const user = result.user;
+
+          // window.localStorage.setItem("Email",user.email);
+          // window.localStorage.setItem("Name",user.displayName);
+          // window.localStorage.setItem("PhotoURL",user.photoURL);
+          
+        }).catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // The email of the user's account used.
+          const email = error.email;
+          // The AuthCredential type that was used.
+          const credential = GoogleAuthProvider.credentialFromError(error);
+          console.log(error);
+        })
+
+      }
+
+      function googlelogoutFn(){
+        signOut(auth).then(() =>{
+          alert('LoggedOut');
+        }).catch((e)=>{
+          alert(e);
+        })
+      }
+
+      auth.onAuthStateChanged((user)=>{
+        if(user){
+          loginButton.style.visibility = "hidden"
+          logoutButton.style.visibility = "visible"
+
+          window.localStorage.setItem("Email",user.email);
+          window.localStorage.setItem("Name",user.displayName);
+          window.localStorage.setItem("PhotoURL",user.photoURL);
+        }else{
+          logoutButton.style.visibility = "hidden"
+          loginButton.style.visibility = "visible"
+          localStorage.clear();
+        }
+      })
+    </script>
+
+    
+
+  </body>
+</html>
